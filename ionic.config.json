@@ -1,0 +1,7 @@
+{
+  "name": "WCW",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
