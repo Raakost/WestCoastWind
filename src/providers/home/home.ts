@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import "rxjs/Rx";
 import {HomeTabModel} from "../../models/HomeTabModel";
@@ -10,19 +10,19 @@ export class HomeProvider {
   constructor(public http: HttpClient) {
   }
 
-  _url : string = 'http://vejr.eu/api.php?location=[CITY]&degree=C';
+  _url: string = 'http://api.apixu.com/v1/current.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg';
+  // _url: string = 'http://api.apixu.com/v1/current.json?key=cef57cc59d9f4148871220732182709&q=[CITY]';
 
-  /* Get content from API, replace [CITY] in url with chosen city in app. */
-  getHomeTabContent(city : string): Observable<HomeTabModel>{
-    const url = this._url.replace('[CITY]', city);
+  // getHomeTabContent(city: string): Observable<HomeTabModel> {
+  //   const url = this._url.replace('[CITY]', city);
+  //
+  //   return this.http.get(url).map(result =>
+  //     result as HomeTabModel);
+  // }
 
-    return this.http.get(url).map(result =>
+  getHomeTabContent(): Observable<HomeTabModel> {
+    return this.http.get(this._url).map(result =>
       result as HomeTabModel);
   }
-
-  getcontent(){
-    return this.http.get('http://vejr.eu/api.php?location=Esbjerg&degree=C').map(result =>
-    result as HomeTabModel);
-}
 
 }

@@ -5,13 +5,16 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-card *ngIf="content">
+      <ion-card-header>
+        <h1 style="color: #f4f4f4;">{{content.location.name +', ' + content.location.region}}</h1>
+      </ion-card-header>
+    <hr style="background-color: #f4f4f4; margin-left: 5px; margin-right: 5px;">
+    <ion-card-content>
+      <h2 class="headers">{{content.current.temp_c}}  °</h2>
+      <h2 class="headers">{{content.current.condition.text}}</h2>
+      <h2 class="headers">{{content.current.wind_dir}}</h2>
+      <h2 class="headers">{{content.current.wind_kph}}</h2>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

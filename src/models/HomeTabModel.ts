@@ -1,8 +1,8 @@
-import {HomeCurrentDataModel} from "./HomeCurrentDataModel";
+import {LocationModel} from "./LocationModel";
+import {CurrentModel} from "./CurrentModel";
+
 
 export class HomeTabModel {
-
-  Id: number;
-  LocationName: string;
-  CurrentData: HomeCurrentDataModel;
+  location : LocationModel;
+  current: CurrentModel;
 }
