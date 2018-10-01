@@ -1,16 +1,18 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import {NgModule, ErrorHandler} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {MyApp} from './app.component';
 
-import { HomePage } from '../pages/home/home';
+import {HomePage} from '../pages/home/home';
 import {WindChartPage} from "../pages/wind-chart/wind-chart";
-import { TabsPage } from '../pages/tabs/tabs';
+import {TabsPage} from '../pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
-import { ForecastServiceProvider } from '../providers/forecast-service/forecast-service';
+import {ForecastServiceProvider} from '../providers/forecast-service/forecast-service';
+import {HistoryPage} from "../pages/history/history";
+import {ForecastPage} from "../pages/forecast/forecast";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ForecastServiceProvider } from '../providers/forecast-service/forecast-
     MyApp,
     HomePage,
     TabsPage,
-    WindChartPage
+    WindChartPage,
+    HistoryPage,
+    ForecastPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { ForecastServiceProvider } from '../providers/forecast-service/forecast-
     MyApp,
     HomePage,
     TabsPage,
-    WindChartPage
+    WindChartPage,
+    HistoryPage,
+    ForecastPage
   ],
   providers: [
     StatusBar,
@@ -39,4 +45,5 @@ import { ForecastServiceProvider } from '../providers/forecast-service/forecast-
     ForecastServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
