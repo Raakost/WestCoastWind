@@ -1,20 +1,22 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Current Weather</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card *ngIf="content">
-      <ion-card-header>
-        <h1 style="color: #f4f4f4;">{{content.location.name +', ' + content.location.region}}</h1>
-      </ion-card-header>
+    <ion-card-header>
+      <h1 style="color: #f4f4f4;">{{content.location.name +', ' + content.location.region}}</h1>
+    </ion-card-header>
     <hr style="background-color: #f4f4f4; margin-left: 5px; margin-right: 5px;">
     <ion-card-content>
-      <h2 class="headers">{{content.current.temp_c}}  °</h2>
+      <!--<h1 style="color: #f4f4f4;">{{(content.location.localtime).substring(11, 18)}}</h1>-->
+      <h2 style="color: #f4f4f4; text-align: center;font-size: 80px;">{{content.current.temp_c}} °</h2>
+      <img style="width: 64px; display: inline;" src={{content.current.condition.icon}}>
       <h2 class="headers">{{content.current.condition.text}}</h2>
-      <h2 class="headers">{{content.current.wind_dir}}</h2>
-      <h2 class="headers">{{content.current.wind_kph}}</h2>
+      <h2 class="headers"><ion-icon name="speedometer"></ion-icon>{{' ' + (content.current.wind_mph * 0.44704).toFixed(0) + ' m/s'}}</h2>
+      <h2 class="headers"><ion-icon name="compass"></ion-icon>{{' ' + content.current.wind_dir}}</h2>
     </ion-card-content>
   </ion-card>
 </ion-content>

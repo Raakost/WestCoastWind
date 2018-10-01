@@ -3,6 +3,6 @@ import {CurrentModel} from "./CurrentModel";
 
 
 export class HomeTabModel {
-  location : LocationModel;
+  location: LocationModel;
   current: CurrentModel;
 }

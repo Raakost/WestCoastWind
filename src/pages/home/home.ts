@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {HomeTabModel} from "../../models/HomeTabModel";
 import {HomeProvider} from "../../providers/home/home";
+import {ForecastServiceProvider} from "../../providers/forecast-service/forecast-service";
 
 @Component({
   selector: 'page-home',
@@ -28,7 +29,7 @@ export class HomePage {
   //   '#8d3d65'  // 26 -  m/s
   // ];
 
-  constructor(public navCtrl: NavController, public ser: HomeProvider) {
+  constructor(public navCtrl: NavController, public ser: ForecastServiceProvider) {
     ser.getHomeTabContent().subscribe(result => {this.content = result});
   }
 
