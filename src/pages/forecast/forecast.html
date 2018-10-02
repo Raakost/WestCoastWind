@@ -5,8 +5,8 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-
+<ion-card *ngIf="content">
+  <ion-card-title style="color: white;">{{content.location.name}}</ion-card-title>
+</ion-card>
 </ion-content>

@@ -1,25 +1,22 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ForecastPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {ForecastServiceProvider} from "../../providers/forecast-service/forecast-service";
+import {ForecastTabModel} from "../../models/ForecastTabModel";
 
 @IonicPage()
 @Component({
   selector: 'page-forecast',
   templateUrl: 'forecast.html',
 })
+
 export class ForecastPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  content: ForecastTabModel;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ForecastPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public ser: ForecastServiceProvider) {
+    ser.getForecastTabContent().subscribe(result => {
+      this.content = result;
+      // console.log(this.content);
+    });
   }
-
 }

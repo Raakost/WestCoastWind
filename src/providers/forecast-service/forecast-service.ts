@@ -9,12 +9,11 @@ import {ForecastTabModel} from "../../models/ForecastTabModel";
 export class ForecastServiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ForecastServiceProvider Provider');
+
   }
 
   _homeUrl: string = 'http://api.apixu.com/v1/current.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg';
-  _foreCastUrl: string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg&days=4';
-
+  _foreCastUrl: string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg&days=1';
 
   getHomeTabContent(): Observable<HomeTabModel> {
     return this.http.get(this._homeUrl).map(result =>

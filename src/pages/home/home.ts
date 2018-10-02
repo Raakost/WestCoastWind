@@ -30,8 +30,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public ser: ForecastServiceProvider) {
     ser.getHomeTabContent().subscribe(result => {
-      this.content = result
+      this.content = result;
     });
   }
-
 }
