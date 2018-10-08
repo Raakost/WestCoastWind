@@ -3,15 +3,16 @@
     <ion-title>Weather Forecast</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="bg-image">
   <!--Current Weather-->
-  <ion-card *ngIf="currentContent">
+  <ion-card style="opacity: 0.7;" *ngIf="currentContent">
     <ion-card-header>
-      <h2 style="color: white; text-align: center;">{{currentContent.location.name +', ' + currentContent.location.region}}</h2>
+      <h2 style="color: white; text-align: center;">{{currentContent.location.name +', ' +
+        currentContent.location.region}}</h2>
     </ion-card-header>
     <ion-card-content>
       <hr style="background-color: white;">
-      <h2 style="color: white; padding-bottom: 20px; text-align: center; font-size: 60px;">
+      <h2 style="color: white; padding-bottom: 20px; text-align: center; font-size: 45px;">
         {{currentContent.current.temp_c}}°</h2>
       <img style="width: 64px; padding-top: 15px; display: inline-block; float: right;"
            src={{currentContent.current.condition.icon}}>
@@ -27,7 +28,7 @@
     </ion-card-content>
   </ion-card>
   <!--forecast date-->
-  <ion-card>
+  <ion-card style="opacity: 0.7;">
     <ion-card-header>
       <div class="row date-row">
         <div class="col"><h3>4/10</h3></div>

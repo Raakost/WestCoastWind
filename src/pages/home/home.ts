@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {HomeTabModel} from "../../models/HomeTabModel";
 import {ForecastServiceProvider} from "../../providers/forecast-service/forecast-service";
 import {ForecastTabModel} from "../../models/ForecastTabModel";
 
@@ -11,7 +10,6 @@ import {ForecastTabModel} from "../../models/ForecastTabModel";
 export class HomePage {
 
   currentContent: ForecastTabModel;
-  forecastContent: ForecastTabModel
 
   // weatherColors : string[] = [
   //   '#6A3D9F', // 0-2 m/s
@@ -33,7 +31,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public ser: ForecastServiceProvider) {
     ser.getHomeTabContent().subscribe(result => {
       this.currentContent = result;
-      console.log(this.currentContent);
     });
+    console.log('ionViewDidLoad HomePage');
   }
 }
