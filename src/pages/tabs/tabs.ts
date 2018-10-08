@@ -11,7 +11,7 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = WindChartPage;
-  tab3Root = ForecastPage;
+  // tab3Root = ForecastPage;
   tab4Root = HistoryPage;
 
   constructor() {

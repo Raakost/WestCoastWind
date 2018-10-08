@@ -1,29 +1,74 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Current Weather</ion-title>
+    <ion-title>Weather Forecast</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  <ion-card *ngIf="content">
+  <!--Current Weather-->
+  <ion-card *ngIf="currentContent">
     <ion-card-header>
-      <h1 style="color: #f4f4f4; text-align: center;">{{content.location.name +', ' + content.location.region}}</h1>
+      <h2 style="color: white; text-align: center;">{{currentContent.location.name +', ' + currentContent.location.region}}</h2>
     </ion-card-header>
-    <hr style="background-color: #f4f4f4; margin-left: 5px; margin-right: 5px;">
     <ion-card-content>
-      <h2 style="color: #f4f4f4; padding-bottom: 20px; text-align: center; font-size: 80px;">
-        {{content.current.temp_c}}°</h2>
+      <hr style="background-color: white;">
+      <h2 style="color: white; padding-bottom: 20px; text-align: center; font-size: 60px;">
+        {{currentContent.current.temp_c}}°</h2>
       <img style="width: 64px; padding-top: 15px; display: inline-block; float: right;"
-           src={{content.current.condition.icon}}>
-      <h2 class="info-headers">{{content.current.condition.text}}</h2>
+           src={{currentContent.current.condition.icon}}>
+      <h2 class="info-headers">{{currentContent.current.condition.text}}</h2>
       <h2 class="info-headers">
         <ion-icon name="speedometer"></ion-icon>
-        &nbsp;&nbsp;&nbsp;&nbsp;{{(content.current.wind_mph * 0.44704).toFixed(0) + ' m/s'}}
+        &nbsp;&nbsp;&nbsp;&nbsp;{{(currentContent.current.wind_mph * 0.44704).toFixed(0) + ' m/s'}}
       </h2>
       <h2 class="info-headers">
         <ion-icon name="compass"></ion-icon>
-        &nbsp;&nbsp;&nbsp;&nbsp;{{content.current.wind_dir}}
+        &nbsp;&nbsp;&nbsp;&nbsp;{{currentContent.current.wind_degree + '° ' + currentContent.current.wind_dir}}
       </h2>
+    </ion-card-content>
+  </ion-card>
+  <!--forecast date-->
+  <ion-card>
+    <ion-card-header>
+      <div class="row date-row">
+        <div class="col"><h3>4/10</h3></div>
+        <div class="col"><h3>5/10</h3></div>
+        <div class="col"><h3>6/10</h3></div>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <hr style="background-color: white;">
+      <!--weather icons-->
+      <div class="row icon-row">
+        <div class="col">
+          <ion-icon name="sunny"></ion-icon>
+        </div>
+        <div class="col">
+          <ion-icon name="rainy"></ion-icon>
+        </div>
+        <div class="col">
+          <ion-icon name="cloudy"></ion-icon>
+        </div>
+      </div>
+      <hr style="background-color: white;">
+      <!--lowest temperature-->
+      <div class="row temp-row">
+        <div class="col"><h4>9 °</h4></div>
+        <div class="col"><h4>8 °</h4></div>
+        <div class="col"><h4>7 °</h4></div>
+      </div>
+      <!--highest temperature-->
+      <div class="row temp-row">
+        <div class="col"><h4>6 °</h4></div>
+        <div class="col"><h4>5 °</h4></div>
+        <div class="col"><h4>4 °</h4></div>
+      </div>
+      <hr style="background-color: white;">
+      <!--max wind-->
+      <div class="row wind-row">
+        <div class="col"><h4>13 m/s</h4></div>
+        <div class="col"><h4>14 m/s</h4></div>
+        <div class="col"><h4>15 m/s</h4></div>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

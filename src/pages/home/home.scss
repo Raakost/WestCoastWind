@@ -1,8 +1,29 @@
 page-home {
 
   .info-headers {
-    color: #f4f4f4;
+    color: white;
     line-height: 2;
+  }
+
+  .date-row h3 {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
+
+  .icon-row {
+    text-align: center;
+    color: white;
+  }
+
+  .temp-row h4 {
+    text-align: center;
+    color: white;
+  }
+
+  .wind-row h4 {
+    text-align: center;
+    color: white;
   }
 
 }
