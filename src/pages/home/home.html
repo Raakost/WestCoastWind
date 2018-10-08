@@ -23,52 +23,51 @@
       </h2>
       <h2 class="info-headers">
         <ion-icon name="compass"></ion-icon>
-        &nbsp;&nbsp;&nbsp;&nbsp;{{currentContent.current.wind_degree + '° ' + currentContent.current.wind_dir}}
+        &nbsp;&nbsp;&nbsp;&nbsp;{{currentContent.current.wind_degree + '° '+ currentContent.current.wind_dir}}
       </h2>
     </ion-card-content>
   </ion-card>
+
   <!--forecast date-->
-  <ion-card style="opacity: 0.7;">
+  <ion-card style="opacity: 0.7;" *ngIf="currentContent">
     <ion-card-header>
       <div class="row date-row">
-        <div class="col"><h3>4/10</h3></div>
-        <div class="col"><h3>5/10</h3></div>
-        <div class="col"><h3>6/10</h3></div>
+        <div class="col" *ngFor="let item of currentContent.forecast.forecastday.slice(1,4)">
+          <h3>{{item.date | date:'dd/MM'}}</h3>
+        </div>
       </div>
     </ion-card-header>
     <ion-card-content>
       <hr style="background-color: white;">
+
       <!--weather icons-->
       <div class="row icon-row">
-        <div class="col">
-          <ion-icon name="sunny"></ion-icon>
-        </div>
-        <div class="col">
-          <ion-icon name="rainy"></ion-icon>
-        </div>
-        <div class="col">
-          <ion-icon name="cloudy"></ion-icon>
+        <div class="col" *ngFor="let item of currentContent.forecast.forecastday.slice(1,4)">
+          <img style="width: 40px; margin: 0 auto;" src={{item.day.condition.icon}}>
         </div>
       </div>
       <hr style="background-color: white;">
-      <!--lowest temperature-->
-      <div class="row temp-row">
-        <div class="col"><h4>9 °</h4></div>
-        <div class="col"><h4>8 °</h4></div>
-        <div class="col"><h4>7 °</h4></div>
-      </div>
+
       <!--highest temperature-->
       <div class="row temp-row">
-        <div class="col"><h4>6 °</h4></div>
-        <div class="col"><h4>5 °</h4></div>
-        <div class="col"><h4>4 °</h4></div>
+        <div class="col" *ngFor="let item of currentContent.forecast.forecastday.slice(1,4)">
+          <h4>{{item.day.maxtemp_c.toFixed(0) + ' °'}}</h4>
+        </div>
+      </div>
+
+      <!--lowest temperature-->
+      <div class="row temp-row">
+        <div class="col" *ngFor="let item of currentContent.forecast.forecastday.slice(1,4)">
+          <h4>{{item.day.mintemp_c.toFixed(0) + ' °'}}</h4>
+        </div>
       </div>
       <hr style="background-color: white;">
+
       <!--max wind-->
       <div class="row wind-row">
-        <div class="col"><h4>13 m/s</h4></div>
-        <div class="col"><h4>14 m/s</h4></div>
-        <div class="col"><h4>15 m/s</h4></div>
+        <div class="col" *ngFor="let item of currentContent.forecast.forecastday.slice(1,4)">
+          <h4>&nbsp;{{(item.day.maxwind_mph * 0.44704).toFixed(0) + ' m/s'}}</h4>
+        </div>
       </div>
     </ion-card-content>
   </ion-card>

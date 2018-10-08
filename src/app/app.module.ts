@@ -12,7 +12,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {ForecastServiceProvider} from '../providers/forecast-service/forecast-service';
 import {HistoryPage} from "../pages/history/history";
-import {ForecastPage} from "../pages/forecast/forecast";
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import {ForecastPage} from "../pages/forecast/forecast";
     HomePage,
     TabsPage,
     WindChartPage,
-    HistoryPage,
-    ForecastPage
+    HistoryPage
   ],
   imports: [
     BrowserModule,
@@ -35,8 +33,7 @@ import {ForecastPage} from "../pages/forecast/forecast";
     HomePage,
     TabsPage,
     WindChartPage,
-    HistoryPage,
-    ForecastPage
+    HistoryPage
   ],
   providers: [
     StatusBar,
