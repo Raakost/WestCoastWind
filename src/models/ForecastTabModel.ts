@@ -6,5 +6,5 @@ export class ForecastTabModel {
 
   location: LocationModel;
   current: CurrentModel;
-  forecast : ForecastModel;
+  forecast: ForecastModel;
 }

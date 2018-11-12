@@ -1,6 +1,6 @@
 page-home {
 
-  .info-headers {
+  .info-header {
     color: white;
     line-height: 2;
   }
@@ -24,6 +24,32 @@ page-home {
   .wind-row h4 {
     text-align: center;
     color: white;
+  }
+
+  .location-header {
+    color: white;
+    text-align: center;
+    font-size: x-large;
+  }
+
+  .temp-header {
+    color: white;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 45px;
+  }
+
+  .large-weather-icon {
+    width: 64px;
+    padding-top: 15px;
+    display: inline-block;
+    float: right;
+  }
+
+  .small-weather-icon {
+    width: 40px;
+    margin: 0 auto;
   }
 
 }

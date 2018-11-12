@@ -18,6 +18,7 @@ export class ForecastServiceProvider {
   getHomeTabContent(): Observable<ForecastTabModel> {
     return this.http.get(this._foreCastUrl).map(result =>
       result as ForecastTabModel);
+
   }
 
   /*

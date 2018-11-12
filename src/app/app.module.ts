@@ -12,6 +12,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpClientModule} from "@angular/common/http";
 import {ForecastServiceProvider} from '../providers/forecast-service/forecast-service';
 import {HistoryPage} from "../pages/history/history";
+import {IonicStorageModule} from "@ionic/storage";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {HistoryPage} from "../pages/history/history";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
