@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Weather Forecast</ion-title>
+    <ion-select (ionChange)="SpotChanged()" [(ngModel)]="spot">
+      <ion-option *ngFor="let spot of spots" [value]="spot">{{spot.name}}</ion-option>
+    </ion-select>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="bg-image">

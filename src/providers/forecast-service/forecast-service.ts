@@ -5,6 +5,7 @@ import "rxjs/Rx";
 import {ForecastTabModel} from "../../models/ForecastTabModel";
 import 'rxjs/add/observable/interval';
 
+
 @Injectable()
 export class ForecastServiceProvider {
 
@@ -14,11 +15,9 @@ export class ForecastServiceProvider {
 
   _foreCastUrl: string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg&days=4';
 
-
   getHomeTabContent(): Observable<ForecastTabModel> {
     return this.http.get(this._foreCastUrl).map(result =>
       result as ForecastTabModel);
-
   }
 
   /*

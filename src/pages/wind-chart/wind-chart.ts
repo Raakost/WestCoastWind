@@ -1,6 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Chart} from 'chart.js';
+import {ScraperServiceProvider} from "../../providers/scraper-service/scraper-service";
+import {ChartDataPointModel} from "../../models/ChartDataPointModel";
+import {ChartModel} from "../../models/ChartModel";
+
 
 @IonicPage()
 @Component({
@@ -10,31 +14,84 @@ import {Chart} from 'chart.js';
 export class WindChartPage {
   @ViewChild('historyChart') lineChart;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  dataPoints: ChartModel = new ChartModel();
+  chart: Chart;
+  interval: any;
+  isRecording: boolean = false;
+  timePassed = 0;
+  intervalMs = 60000;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public scraper: ScraperServiceProvider) {
+  }
+
+  Record() {
+    this.interval = setInterval(this.Scrape.bind(this), this.intervalMs);
+    this.Scrape();
+  }
+
+  Scrape() {
+    this.scraper.ScrapeHvideSande().subscribe((result) => {
+      this.dataPoints.dataPoints.push(result);
+      this.chart.data.labels.push(result.timeStamp);
+      this.chart.data.datasets.forEach((dataSet) => {
+        switch (dataSet.label) {
+          case 'Mean Wind':
+            dataSet.data.push(result.meanWind);
+            break;
+          case 'Wind Gust':
+            dataSet.data.push(result.windGust);
+            break;
+          case 'Wind Average':
+            dataSet.data.push(result.average);
+            break;
+        }
+      });
+      this.chart.update();
+      this.timePassed = this.timePassed + this.intervalMs;
+      if (this.timePassed > 600000) {
+        clearInterval(this.interval);
+        this.isRecording = false;
+        this.interval = undefined;
+      }
+    });
   }
 
   ionViewDidLoad() {
-    var chart = new Chart(this.lineChart.nativeElement.getContext('2d'), {
+    this.chart = new Chart(this.lineChart.nativeElement.getContext('2d'), {
         type: 'line', // what type of chart
         data: {
-          labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',], // labels for data points/x-axis
+          // labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00',], // labels for data points/x-axis
+          labels: [],
           datasets: [{
-            label: 'Mean Wind Speed', // label for info/top
-            data: [1.5, 2, 3, 5, 8, 1, 4, 9], // y-axis
-            backgroundColor: ['rgba(14,194,255, 0.3)'], // color below line
+            label: 'Mean Wind', // label for info/top
+            // data: [1.5, 2, 3, 5, 8, 1, 4, 9], // y-axis
+            data: [],
+            backgroundColor: ['rgba(14,194,255, 0.4)'], // color below line
             borderColor: ['#0ec2ff'], // line color
             borderWidth: 1, // line width
             pointRadius: 3,
-            pointHitRadius: 15
+            pointHitRadius: 40
           }, {
             label: 'Wind Gust', // label for info/top
-            data: [3.4, 4, 4, 8, 14, 3, 8, 16], // y-axis
-            backgroundColor: ['rgba(248,142,25, 0.3)'], // color below line
+            // data: [3.4, 4, 4, 8, 14, 3, 8, 16], // y-axis
+            data: [],
+            backgroundColor: ['rgba(248,142,25, 0.4)'], // color below line
             borderColor: ['#f88e19'], // line color
             borderWidth: 1, // line width
             pointRadius: 3,
-            pointHitRadius: 40,
-          }],
+            pointHitRadius: 40
+          },
+            {
+              label: 'Wind Average', // label for info/top
+              // data: [2, 3, 2.5, 7, 12, 2, 6, 14], // y-axis
+              data: [],
+              backgroundColor: ['rgba(129,248,103, 0.4)'], // color below line
+              borderColor: ['#81f867'], // line color
+              borderWidth: 1, // line width
+              pointRadius: 3,
+              pointHitRadius: 40
+            }],
+
         },
         options: {
           layout: {
@@ -48,7 +105,7 @@ export class WindChartPage {
             labels: {
               fontColor: '#ffffff',
               fontSize: 14,
-              boxWidth: 45
+              boxWidth: 16
             },
             position: 'top'
           },

@@ -13,6 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {ForecastServiceProvider} from '../providers/forecast-service/forecast-service';
 import {HistoryPage} from "../pages/history/history";
 import {IonicStorageModule} from "@ionic/storage";
+import {ScraperServiceProvider} from '../providers/scraper-service/scraper-service';
+import {ConfigServiceProvider} from '../providers/config-service/config-service';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import {IonicStorageModule} from "@ionic/storage";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ForecastServiceProvider
+    ForecastServiceProvider,
+    ScraperServiceProvider,
+    ConfigServiceProvider,
   ]
 })
 export class AppModule {

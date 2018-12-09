@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {ForecastServiceProvider} from "../../providers/forecast-service/forecast-service";
 import {ForecastTabModel} from "../../models/ForecastTabModel";
+import {SpotModel} from "../../models/SpotModel";
+import {ConfigServiceProvider} from "../../providers/config-service/config-service";
 
 @Component({
   selector: 'page-home',
@@ -10,28 +12,19 @@ import {ForecastTabModel} from "../../models/ForecastTabModel";
 export class HomePage {
 
   currentContent: ForecastTabModel;
+  spot: SpotModel;
+  spots: Array<SpotModel>;
 
-  // weatherColors : string[] = [
-  //   '#6A3D9F', // 0-2 m/s
-  //   '#494ba3', // 2-4 m/s
-  //   '#3d64a3', // 4-6 m/s
-  //   '#3d80a1', // 6-8 m/s
-  //   '#3e9893', // 8-10 m/s
-  //   '#439343', // 10-12 m/s
-  //   '#47a13d', // 12-14 m/s
-  //   '#a3a03d', // 14-16 m/s
-  //   '#a38c3d', // 16-18 m/s
-  //   '#a2783d', // 18-20 m/s
-  //   '#98633f', // 20-22 m/s
-  //   '#8c5049', // 22-24 m/s
-  //   '#823d4a', // 24-26 m/s
-  //   '#8d3d65'  // 26 -  m/s
-  // ];
-
-  constructor(public navCtrl: NavController, public ser: ForecastServiceProvider) {
-    ser.getHomeTabContent().subscribe(result => {
+  constructor(public navCtrl: NavController, public service: ForecastServiceProvider, public config: ConfigServiceProvider) {
+    service.getHomeTabContent().subscribe(result => {
       this.currentContent = result;
     });
+    this.spots = config.config.spots;
+    this.spot = config.config.selectedSpot;
     console.log('ionViewDidLoad HomePage');
+  }
+
+  SpotChanged() {
+    config.config.selectedSpot = this.spot;
   }
 }
