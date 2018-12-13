@@ -9,11 +9,11 @@ export class ConfigServiceProvider {
 
   config: ConfigurationModel = {
     spots: [{
-      name: 'Esbjerg',
+      name: 'Hvide Sande',
       getDataPoint: this.scraper.ScrapeEsbjerg
 
     }, {
-      name: 'Hvide Sande',
+      name: 'Esbjerg',
       getDataPoint: this.scraper.ScrapeHvideSande
     }], selectedSpot: undefined
   };

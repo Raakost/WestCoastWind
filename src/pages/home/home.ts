@@ -25,6 +25,6 @@ export class HomePage {
   }
 
   SpotChanged() {
-    config.config.selectedSpot = this.spot;
+    this.config.config.selectedSpot = this.spot;
   }
 }

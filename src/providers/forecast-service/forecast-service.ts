@@ -13,7 +13,7 @@ export class ForecastServiceProvider {
 
   }
 
-  _foreCastUrl: string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=Esbjerg&days=4';
+  _foreCastUrl: string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=hvide%20sande&days=4';
 
   getHomeTabContent(): Observable<ForecastTabModel> {
     return this.http.get(this._foreCastUrl).map(result =>
@@ -24,14 +24,14 @@ export class ForecastServiceProvider {
    * WITH CITY PARAM
   */
 
-  // _foreCastUrl : string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=[CITY]&days=4';
-  //
-  // getHomeTabContent(city: string): Observable<ForecastTabModel> {
-  //   const url = this._foreCastUrl.replace('[CITY]', city);
-  //
-  //   return this.http.get(url).map(result =>
-  //     result as ForecastTabModel);
-  // }
+   // _foreCastUrl : string = 'http://api.apixu.com/v1/forecast.json?key=cef57cc59d9f4148871220732182709&q=[CITY]&days=4';
+   //
+   // getHomeTabContent(city: string): Observable<ForecastTabModel> {
+   //   const url = this._foreCastUrl.replace('[CITY]', city);
+   //
+   //   return this.http.get(url).map(result =>
+   //     result as ForecastTabModel);
+   // }
 
 
 }

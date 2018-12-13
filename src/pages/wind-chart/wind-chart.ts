@@ -2,8 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Chart} from 'chart.js';
 import {ScraperServiceProvider} from "../../providers/scraper-service/scraper-service";
-import {ChartDataPointModel} from "../../models/ChartDataPointModel";
 import {ChartModel} from "../../models/ChartModel";
+import {ChartDataPointModel} from "../../models/ChartDataPointModel";
 
 
 @IonicPage()
@@ -14,7 +14,6 @@ import {ChartModel} from "../../models/ChartModel";
 export class WindChartPage {
   @ViewChild('historyChart') lineChart;
 
-  dataPoints: ChartModel = new ChartModel();
   chart: Chart;
   interval: any;
   isRecording: boolean = false;
@@ -25,15 +24,19 @@ export class WindChartPage {
   }
 
   Record() {
-    this.interval = setInterval(this.Scrape.bind(this), this.intervalMs);
-    this.Scrape();
+    if (!this.isRecording) {
+      clearInterval(this.interval);
+      this.interval = undefined;
+    } else {
+      this.interval = setInterval(this.Scrape.bind(this), this.intervalMs);
+      this.Scrape();
+    }
   }
 
   Scrape() {
-    this.scraper.ScrapeHvideSande().subscribe((result) => {
-      this.dataPoints.dataPoints.push(result);
-      this.chart.data.labels.push(result.timeStamp);
-      this.chart.data.datasets.forEach((dataSet) => {
+    this.scraper.ScrapeHvideSande().subscribe((result : ChartDataPointModel) => {
+      this.chart.data.labels.push(result.timeStamp); // x-axis
+      this.chart.data.datasets.forEach((dataSet) => { // y-axis
         switch (dataSet.label) {
           case 'Mean Wind':
             dataSet.data.push(result.meanWind);
@@ -42,13 +45,13 @@ export class WindChartPage {
             dataSet.data.push(result.windGust);
             break;
           case 'Wind Average':
-            dataSet.data.push(result.average);
+            dataSet.data.push(result.windAverage);
             break;
         }
       });
       this.chart.update();
       this.timePassed = this.timePassed + this.intervalMs;
-      if (this.timePassed > 600000) {
+      if (this.timePassed > 900000) {
         clearInterval(this.interval);
         this.isRecording = false;
         this.interval = undefined;
@@ -133,7 +136,7 @@ export class WindChartPage {
               ticks: {
                 beginAtZero: true,
                 stepSize: 1,
-                max: 18,
+                // max: 25,
                 fontColor: '#ffffff',
                 fontSize: 12,
                 padding: 10

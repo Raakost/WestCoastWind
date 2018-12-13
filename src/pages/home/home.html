@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Weather Forecast</ion-title>
-    <ion-select (ionChange)="SpotChanged()" [(ngModel)]="spot">
+  <ion-item>
+    <ion-label style="font-size: medium;">Choose Location:</ion-label>
+    <ion-select class="location-select" (ionChange)="SpotChanged()" [(ngModel)]="spot">
       <ion-option *ngFor="let spot of spots" [value]="spot">{{spot.name}}</ion-option>
     </ion-select>
-  </ion-navbar>
+  </ion-item>
 </ion-header>
+
 <ion-content padding class="bg-image">
   <!--Current Weather-->
   <ion-card style="opacity: 0.7;" *ngIf="currentContent">
     <ion-card-header>
-      <h2 class="location-header">{{currentContent.location.name +', ' +
-        currentContent.location.region}}</h2>
+      <h2 class="location-header">{{currentContent.location.name +', ' + currentContent.location.region}}</h2>
     </ion-card-header>
     <ion-card-content>
       <hr style="background-color: white;">

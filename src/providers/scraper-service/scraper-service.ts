@@ -22,10 +22,10 @@ export class ScraperServiceProvider {
       let dataPoint = new ChartDataPointModel();
       let now = new Date();
 
-      dataPoint.timeStamp = now.getHours() + ':' + now.getMinutes();
+      dataPoint.timeStamp = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
       dataPoint.meanWind = parseFloat(meanWind.replace(',', '.').replace(' m/s', ''));
       dataPoint.windGust = parseFloat(windGust.replace(',', '.').replace(' m/s', ''));
-      dataPoint.average = (dataPoint.meanWind + dataPoint.windGust) / 2;
+      dataPoint.windAverage = (dataPoint.meanWind + dataPoint.windGust) / 2;
 
       return dataPoint;
     });
@@ -39,7 +39,7 @@ export class ScraperServiceProvider {
       dataPoint.timeStamp = now.getHours() + ':' + now.getMinutes();
       dataPoint.meanWind = parseFloat(result.data.VHastMid);
       dataPoint.windGust = parseFloat(result.data.VStoedMax);
-      dataPoint.average = (dataPoint.meanWind + dataPoint.windGust) / 2;
+      dataPoint.windAverage = (dataPoint.meanWind + dataPoint.windGust) / 2;
 
       return dataPoint;
     });

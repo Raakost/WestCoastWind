@@ -1,17 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Wind Chart</ion-title>
-  </ion-navbar>
+  <ion-item>
+    <!--<ion-label style="font-size: medium; color: #999;">{{isRecording ? 'ON' : 'OFF'}}</ion-label>-->
+    <ion-label style="font-size: medium; color: #999;">Record: </ion-label>
+    <ion-toggle [(ngModel)]="isRecording" (ionChange)="Record()"></ion-toggle>
+  </ion-item>
 </ion-header>
 
 <ion-content padding class="bg-image">
-  <ion-list>
-    <ion-item>
-      <ion-toggle [(ngModel)]="isRecording" (ionChange)="Record()"></ion-toggle>
-    </ion-item>
-    <ion-item>
-
-    </ion-item>
-    <canvas #historyChart style="background-color: #242424; opacity: 0.7;"></canvas>
-  </ion-list>
+  <canvas #historyChart style="background-color: #242424; opacity: 0.7;"></canvas>
 </ion-content>
+
+
