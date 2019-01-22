@@ -17,7 +17,8 @@ export class ScraperServiceProvider {
   ScrapeHvideSande() {
     return this.http.get(this._hvideSandeUrl, {responseType: 'text'}).map((res: any) => {
       const htmlParsed: any = cheerio.load(res);
-      let meanWind = htmlParsed('.row:nth-child(3) span').contents().first().text();
+      // let meanWind = htmlParsed('.row:nth-child(3) span').contents().first().text();
+      let meanWind = htmlParsed('.row:nth-child(3) > div > div > div table tr:nth-child(2) td').contents().eq(1).text();
       let windGust = htmlParsed('.row:nth-child(3) > div > div > div table tr:nth-child(3) td').contents().eq(1).text();
       let dataPoint = new ChartDataPointModel();
       let now = new Date();

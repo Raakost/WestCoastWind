@@ -55,6 +55,7 @@ export class WindChartPage {
         clearInterval(this.interval);
         this.isRecording = false;
         this.interval = undefined;
+        this.timePassed = 0;
       }
     });
   }
